@@ -28,8 +28,18 @@ yesterdayplus = today - timedelta(days=2)
 timestamp1 = round(datetime.timestamp(yesterdayplus))
 timestamp2 = round(datetime.timestamp(yesterday))
 
+# Array of companies
+companies = ["AVHOQ","EC","AVAL","CMTOY"]
+
+def setS3(csv):
+    for i in csv:
+        print(i)
+        
 # Scraping to get csv
-url = f'https://query1.finance.yahoo.com/v7/finance/download/AVHOQ?period1={timestamp1}&period2={timestamp2}&interval=1d&events=history&includeAdjustedClose=true'
-respuesta = urllib.request.urlopen(url)
-f = StringIO(bytearray(respuesta.read()).decode())
-archivo = csv.reader(f)
+for company in companies:
+    url = f'https://query1.finance.yahoo.com/v7/finance/download/{company}?period1={timestamp1}&period2={timestamp2}&interval=1d&events=history&includeAdjustedClose=true'
+    respuesta = urllib.request.urlopen(url)
+    f = StringIO(bytearray(respuesta.read()).decode())
+    archivo = csv.reader(f)
+    setS3(archivo)
+
