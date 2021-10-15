@@ -19,17 +19,17 @@ from io import StringIO
 # print("timestamp de antier =", timestamp2)
 from datetime import datetime, timedelta
 
-# current date and time
+# current date and past dates
 today = datetime.now().replace(hour = 0, minute = 0, second = 0, microsecond = 0)
 yesterday = today - timedelta(days=1)
 yesterdayplus = today - timedelta(days=2)
 
-print('Hoy = ', today)
-print("Ayer:", yesterday)
-print("Antier:", yesterdayplus)
-
+# timestamp of dates
 timestamp1 = round(datetime.timestamp(yesterdayplus))
 timestamp2 = round(datetime.timestamp(yesterday))
-print("Antier timestamp =", timestamp1)
-print("Ayer timestamp =", timestamp2)
 
+# Scraping to get csv
+url = f'https://query1.finance.yahoo.com/v7/finance/download/AVHOQ?period1={timestamp1}&period2={timestamp2}&interval=1d&events=history&includeAdjustedClose=true'
+respuesta = urllib.request.urlopen(url)
+f = StringIO(bytearray(respuesta.read()).decode())
+archivo = csv.reader(f)
