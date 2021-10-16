@@ -4,12 +4,10 @@ import urllib.request
 from io import StringIO
 import json
 import boto3
-
-
+import os
 
 def handler(event,context):
-    print('hello from Zappa')
-    # current date and past dates
+    print('Hello from zappa')
     today = datetime.now().replace(hour = 0, minute = 0, second = 0, microsecond = 0)
     yesterday = today - timedelta(days=1)
     yesterdayplus = today - timedelta(days=2)
@@ -21,18 +19,15 @@ def handler(event,context):
     # Array of companies
     companies = ["AVHOQ","EC","AVAL","CMTOY"]
 
-            
     # Scraping to get csv
     for company in companies:
         url = f'https://query1.finance.yahoo.com/v7/finance/download/{company}?period1={timestamp1}&period2={timestamp2}&interval=1d&events=history&includeAdjustedClose=true'
-        respuesta = urllib.request.urlopen(url)
-        f = StringIO(bytearray(respuesta.read()).decode())
-        archivo = csv.reader(f)
+        urllib.request.urlretrieve(url,f"/tmp/{company}")
+        urlSave=f'stocks/company={company}/year={yesterday.year}/month={yesterday.month}/day={yesterday.day}/Acciones_{company}.csv'
         s3 = boto3.resource('s3')
-        s3.meta.client.upload_file('/stocks','yahoofinancescrapingpunto1',archivo)
+        s3.meta.client.upload_file(f'/tmp/{company}', 'yahoofinancescrapingpunto1',urlSave)        
 
-    return {
-        'statusCode': 200,
-        'body': json.dumps('Funciono!')
+    return{
+        "statusCode":200,
+        "body":json.dumps("Hello from Lambda")
     }
-
