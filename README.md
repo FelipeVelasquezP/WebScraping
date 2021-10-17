@@ -6,7 +6,7 @@ Ejecución de los scripts para la implementacion de Scraping mediande AWS a dife
 
 1. Creacion de un ambiente virutal
 
-    ```bash
+    ```cmd
     C:\Equipo> virtualenv env
     ```
 
