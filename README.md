@@ -41,8 +41,8 @@ Desplegar la función
 Una vez ejecutado el siguiente comando, se puede apreciar la funcion en el servicio de AWS Lambda
 
     ```cmd
-    (env) C:\Equipo> zappa deploy dev 
-    ```    
+    (env) C:\Equipo> pip install -r requirements.txt
+    ```   
     
 Este procedimiento se realiza tambien para la carpeta lambda_Update_Partitions
       
