@@ -9,8 +9,8 @@ import os
 def handler(event,context):
     print('Hello from zappa')
     today = datetime.now().replace(hour = 0, minute = 0, second = 0, microsecond = 0)
-    yesterday = today - timedelta(days=1)
-    yesterdayplus = today - timedelta(days=2)
+    yesterday = today - timedelta(days=2)
+    yesterdayplus = today - timedelta(days=3)
 
     # timestamp of dates
     timestamp1 = round(datetime.timestamp(yesterdayplus))
