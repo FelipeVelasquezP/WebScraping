@@ -23,7 +23,7 @@ def handler(event,context):
     for company in companies:
         url = f'https://query1.finance.yahoo.com/v7/finance/download/{company}?period1={timestamp1}&period2={timestamp2}&interval=1d&events=history&includeAdjustedClose=true'
         urllib.request.urlretrieve(url,f"/tmp/{company}")
-        urlSave=f'stocks/company={company}/year={yesterday.year}/month={yesterday.month}/day={yesterday.day}/Acciones_{company}.csv'
+        urlSave=f'stocks/company={company}/year={yesterday.year}/month={yesterday.month}/day={yesterday.day-1}/Acciones_{company}.csv'
         s3 = boto3.resource('s3')
         s3.meta.client.upload_file(f'/tmp/{company}', 'yahoofinancescrapingpunto1',urlSave)        
 
