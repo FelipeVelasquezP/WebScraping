@@ -6,6 +6,15 @@
         "project_name": "lambda-update-p",
         "runtime": "python3.8",
         "s3_bucket": "zappa-p8rgact4a",
-        "keep_warm": false
+        "keep_warm": false,
+        "events": [{
+            "function": "app.handler",
+            "event_source": {
+                  "arn":  "arn:aws:s3:::yahoofinancescrapingpunto1",
+                  "events": [
+                    "s3:ObjectCreated:*" 
+                  ]
+               }
+            }]
     }
 }

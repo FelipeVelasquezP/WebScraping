@@ -9,8 +9,8 @@ import os
 def handler(event,context):
     print('Hello from zappa')
     today = datetime.now().replace(hour = 0, minute = 0, second = 0, microsecond = 0)
-    yesterday = today - timedelta(days=2)
-    yesterdayplus = today - timedelta(days=3)
+    yesterday = today - timedelta(days=0)
+    yesterdayplus = today - timedelta(days=1)
 
     # timestamp of dates
     timestamp1 = round(datetime.timestamp(yesterdayplus))
@@ -22,6 +22,7 @@ def handler(event,context):
     # Scraping to get csv
     for company in companies:
         url = f'https://query1.finance.yahoo.com/v7/finance/download/{company}?period1={timestamp1}&period2={timestamp2}&interval=1d&events=history&includeAdjustedClose=true'
+        print(url)
         urllib.request.urlretrieve(url,f"/tmp/{company}")
         urlSave=f'stocks/company={company}/year={yesterday.year}/month={yesterday.month}/day={yesterday.day-1}/Acciones_{company}.csv'
         s3 = boto3.resource('s3')
