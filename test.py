@@ -10,6 +10,8 @@ espectadorURL = "https://www.elespectador.com/"
 tiempoHTML = requests.get(tiempoURL)
 espectadorHTML = requests.get(espectadorURL, timeout=5000, stream=True)
 
+print(espectadorHTML)
+
 # Conversion HTML to BS
 tiempoBS = BeautifulSoup(tiempoHTML.content, 'html.parser')
 espectadorBS = BeautifulSoup(espectadorHTML.content, 'html.parser')
