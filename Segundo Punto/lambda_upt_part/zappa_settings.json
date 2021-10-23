@@ -1,0 +1,21 @@
+{
+    "dev": {
+        "app_function": "app.handler",
+        "aws_region": "us-east-1",
+        "profile_name": "default",
+        "project_name": "lambda-upt-part",
+        "runtime": "python3.8",
+        "s3_bucket": "zappa-oagg9g685",
+        "keep_warm": false,
+        "apigateway_enabled": false,
+        "events": [{
+            "function": "app.handler",
+            "event_source": {
+                  "arn":  "arn:aws:s3:::newsscrapingcsv",
+                  "events": [
+                    "s3:ObjectCreated:*" 
+                  ]
+               }
+            }]
+    }
+}
