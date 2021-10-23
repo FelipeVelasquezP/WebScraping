@@ -1,5 +1,5 @@
 #Creacion de la base de Datos
-create database yahooscraping
+create database scrapingNews
 
 #Creacion de la tabla particionada , de acuerdo con el bucket donde se almaceno lo ejecutado en la funcion lambda
 CREATE EXTERNAL TABLE `periodicos`(
