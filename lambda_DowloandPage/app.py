@@ -25,10 +25,10 @@ def handler(event,context):
         page = requests.get(i[1])
         # espectadorHTML = requests.get(espectadorURL, timeout=5000, stream=True)
         filesave = '/tmp/'+i[0]+'.html'
-        with open(filesave, 'w') as web:
+        with open(filesave, 'w', encoding='utf-8') as web:
             web.write(page.text)
         #save in s3
-        ruta=f'headlines/raw/periodico={i[0]}/year={year}/month={month}/day={day}/{i[0]}.html'
+        ruta=f'headlines/raw/periodico={i[0]}/year={year}/month={month}/day={day-1}/{i[0]}.html'
         s3 = boto3.resource('s3')
         s3.meta.client.upload_file(filesave, 'newsscrapingstructure', ruta)
 

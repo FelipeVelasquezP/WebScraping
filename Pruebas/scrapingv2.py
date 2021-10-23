@@ -86,7 +86,7 @@ urlClass = tiempoBS.find_all('h3', class_='title-container')
 
 # Begins the scraping for "El Tiempo"
 newsTitles(titleClass)
-newsCategories(categoryClass, "ET")
+newsCategories(categoryClass,"ET")
 newsUrls(urlClass)
 generateCSV(categories, titles, urls, "El Tiempo.csv")
 
@@ -98,5 +98,4 @@ categoryClass = espectadorBS.find_all('h4', class_='Card-Section')
 newsTitles(titleClass)
 newsCategories(categoryClass)
 newsUrls(titleClass)
-
 generateCSV(categories, titles, urls, "El Espectador.csv")

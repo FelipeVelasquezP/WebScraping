@@ -6,6 +6,7 @@
         "project_name": "lambda-makecsv",
         "runtime": "python3.8",
         "s3_bucket": "zappa-jqxsos188",
+        "apigateway_enabled": false,
         "keep_warm": false,
         "events": [{
             "function": "app.handler",
