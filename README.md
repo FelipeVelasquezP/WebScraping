@@ -1,7 +1,5 @@
 # WebScraping_News
 
-# econoamigos
-
 Ejecución de los scripts para la implementacion de Scraping mediande AWS a diferentes paginas web 
 
 1. Creacion de un ambiente virutal
